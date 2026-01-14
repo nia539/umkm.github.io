@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog Produk</title>
+    <link rel="stylesheet" href="home.css">
+
+
+</head>
+
+<body>
+   <section>
+            <nav>
+                <ul>
+                    <img src="gambar.jpeg" width="150" height="100">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="ha.html">Katalog Produk </a></li>
+                    <li><a href="web2.html">Detail Produk</a></li>
+                    <li><a href="h.html">Keluar</a></li>
+                    
+                </ul>
+            </nav>
+<div class="container">
+
+
+<!-- ADMIN PANEL -->
+
+  <h3>Admin Panel</h3>
+  <input id="nama" placeholder="Nama Produk">
+  <input id="harga" placeholder="Harga">
+  <input id="gambar" placeholder="URL Gambar" a href>
+  <textarea id="komposisi" placeholder="Komposisi"></textarea>
+  <br>
+  <button class="btn" onclick="tambahProduk()">Tambah Produk</button>
+  <button class="btn-red" onclick="logout()">Logout</button>
+</br>
+
+<hr>
+<div class="container">
+
+<!-- KATALOG PRODUK -->
+<div id="katalog"></div>
+
+</div>
+
+<script>
+// DATA PRODUK (10 PRODUK)
+let produk = [
+ {nama:"Mie Gomak", harga:5000, gambar:"GOMAK.jpeg", komposisi:"Pisang, gula, minyak"},
+ {nama:"Piscok", harga:10000, gambar:"piscok.jpeg", komposisi:"Singkong, garam"},
+ {nama:"Martabak Telur", harga:15000, gambar:"telur.jpeg", komposisi:"Cabai, bawang"},
+ {nama:"Es Doger", harga:10000, gambar:"Es.jpeg", komposisi:"Tepung, telur"},
+ {nama:"Sate Ayam", harga:20000, gambar:"sate.jpeg", komposisi:"Biji kopi"},
+ {nama:"Kue Cubit", harga:18000, gambar:"kue.jpeg", komposisi:"Daun herbal"},
+ {nama:"Risol", harga:5000, gambar:"risol.jpg", komposisi:"Madu murni"},
+ {nama:"Telur Gulung", harga:5000, gambar:"gulung.jpeg", komposisi:"Daging sapi"},
+ {nama:"Es Buah", harga:10000, gambar:"buah.jpeg", komposisi:"Tepung, kacang"},
+ {nama:"Es Kelapa Muda", harga:20000, gambar:"kelapa.jpeg", komposisi:"Coklat, tepung"}
+];
+
+// TAMPILKAN PRODUK
+function tampilProduk(){
+  let html="";
+
+  produk.forEach((p,i)=>{
+    html+=`
+    <div class="card">
+      <img src="${p.gambar}" class="img-produk">
+
+      <h4>${p.nama}</h4>
+      <p>Harga: Rp ${p.harga}</p>
+      <p><b>Komposisi:</b> ${p.komposisi}</p>
+      <a href="https://wa.me/6285274041919?text=Saya ingin pesan ${p.nama}" target="_blank">
+        <button class="btn">Pesan via WhatsApp</button>
+      </a>
+      <button class="btn-red" onclick="hapus(${i})">Hapus</button>
+    </div>`;
+  });
+  katalog.innerHTML=html;
+}
+tampilProduk();
+
+
+// TAMBAH PRODUK
+function tambahProduk(){
+  produk.push({
+    nama:nama.value,
+    harga:harga.value,
+    gambar:gambar.value,
+    komposisi:komposisi.value
+  });
+  tampilProduk();
+}
+
+// HAPUS PRODUK
+function hapus(i){
+  produk.splice(i,1);
+  tampilProduk();
+}
+</script>
+
+</body>
+</html>

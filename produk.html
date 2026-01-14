@@ -1,0 +1,24 @@
+<?php
+session_start();
+
+// TAMBAH PRODUK
+if(isset($_POST['tambah'])){
+  mysqli_query($conn,"INSERT INTO produk VALUES(
+    '',
+    '$_POST[nama]',
+    '$_POST[harga]',
+    '$_POST[komposisi]',
+    'produk.jpg'
+  )");
+}<?php } else { ?>
+
+<!-- FORM TAMBAH PRODUK -->
+<h4>Tambah Produk</h4>
+<form method="POST">
+  <input class="form-control mb-2" name="nama" placeholder="Nama Produk">
+  <input class="form-control mb-2" name="harga" placeholder="Harga">
+  <textarea class="form-control mb-2" name="komposisi" placeholder="Komposisi"></textarea>
+  <button class="btn btn-success" name="tambah">Tambah</button>
+  <a href="?logout" class="btn btn-danger">Logout</a>
+</form>
+<?php } ?>
